@@ -3,6 +3,7 @@ export libsundials_arkode, libsundials_cvode, libsundials_cvodes, libsundials_id
 
 using CompilerSupportLibraries_jll
 using OpenBLAS32_jll
+using SuperLU_MT_jll
 ## Global variables
 PATH = ""
 LIBPATH = ""
@@ -341,8 +342,8 @@ function __init__()
     global PATH_list, LIBPATH_list
     # From the list of our dependencies, generate a tuple of all the PATH and LIBPATH lists,
     # then append them to our own.
-    foreach(p -> append!(PATH_list, p), (CompilerSupportLibraries_jll.PATH_list, OpenBLAS32_jll.PATH_list,))
-    foreach(p -> append!(LIBPATH_list, p), (CompilerSupportLibraries_jll.LIBPATH_list, OpenBLAS32_jll.LIBPATH_list,))
+    foreach(p -> append!(PATH_list, p), (CompilerSupportLibraries_jll.PATH_list, OpenBLAS32_jll.PATH_list, SuperLU_MT_jll.PATH_list,))
+    foreach(p -> append!(LIBPATH_list, p), (CompilerSupportLibraries_jll.LIBPATH_list, OpenBLAS32_jll.LIBPATH_list, SuperLU_MT_jll.LIBPATH_list,))
 
     global libsundials_arkode_path = normpath(joinpath(artifact_dir, libsundials_arkode_splitpath...))
 
